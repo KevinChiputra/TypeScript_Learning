@@ -1,0 +1,74 @@
+part 1
+1. TS adalah dibuild di atas JS dengan type
+2. cara compile di terminal pakai keyword "tsc" <nama program>. Sehingga setiap terdapat perubahan pada TS perlu di compile. Bisa jg "tsc -w", w = watch secar live. 
+3. dalam ts kita bisa configure root, out root dengan cara pertama
+    - tsc init
+    - ke file tsconfig.json => cari rootDir untuk posisi skrg dan outDir untuk dimn file js tercompile
+    - kemudian target menunjukan versi dari JS, jadi jika kita pakai es5 compile akan otomatis menggunakan var walaupun di file TS menggunakan let
+    - jika tidak mau ada file ts selain di root dir, maka kita ke paling bawah buat sebuah array, dan beri nama folder root kita.
+    - pada dasarnya JS dpt berjalan walaupun terdapat TS error, karena akan di compile ttp TS compiler tidak akan suka. Oleh sebab itu jika kita tidak mau TS compiler compile file js selama masih ad error aktfikan "noEmitOnError" di tsconfig.json
+
+=============================== part 2 ========================================
+Terminology:
+1. Stricly Typed language
+2. explicit infer let myname: string = 'dave'
+3. terdapat any data type. Digunakan kalau binggung tipe data apa yang akan kita terima
+4. terdapat union type, dimana cara penulisannya "let variable1: number | string". Jadi disambungkan dengan tanda "|"
+
+=================================== part 3 ========================================
+1. array: sama seperti JS cuman jika kita isi dgn semua string maka jadi arr of string, jika kita ubah atau push number di JS akan ttp bs, tapi di TS akan mucul error karena tidak sesuai saja. Seperti reminder
+2. jika ingin membuat array yg lebih strict bisa membuat tuple, let myTuple: [string, number, boolean] = ['dave', 32, true]. Penulisan spesifik data type jg bisa dilakukan di array dgn "let namaArr: {datatype}[] = []". jika mau array any "let data = []".
+3. penjelasan tambahan Obj berada di line 19
+4. enum fitur TS, kira" cara penulisan mirip interface. Tapi jika terdapa 5 atribute, pasti dimulai dari 0, tapi jika pada yg index 0 kita ubah menjadi = 1 yang lain akan menyesesuaikan menjadi 2, 3, 4, dan 5 yang awalnya, 0, 1, 2, 3, 4
+
+
+================================== part 4 ===========================================
+1. type alias bisa lebih dari object, penulisannya type {nama} = {tipe data | tipe data}
+2. sedangkan interface tidak bisa menerima type alias
+3. Literal type membuat agar isi sesuai dengan yg diinginkan. misal "let userName: 'john' | 'dave' | 'amy'"
+4. bahas function, parameter perlu di spesifikian data typenya
+5. never data type, function yg secara eksplisit throw error. Never type jg terdapat pada infinite loop
+6. data type void utk meleparkan function()
+
+
+====================================== part 5 =========================================
+Type Assertions dan type casting
+1. penggunaan "as" untuk ganti type (Assertions)
+2. double casting (two assertions in a row). 
+3. Terdapat data type unknown.
+4. Assertions paling terpakai di DOM
+5. '!' non null assertions. Jika pada data typenya element | null, dengan pakai '!' kita mengatakan bahwa tidak ada null dan TS akan memilih element
+6 penulisan <type> dan penggunaan as sama sebagai assertions, yg membedakan <type> tdk bisa digunakan di JSX
+
+
+========================================== part 6 =====================================
+TS classes
+1. penulisan class memerlukan constractor, tetapi jika tidak terdapa variable yg sesuai, seperti saat penulisan constructor(name: string){this.name = name}, TS akan error dan meminta mengdeclare sebuah variable bernama name. MASALHANYA SEMUA AKAN MENJADI REDUNDENT.
+2. Solusinya pakai visibility modifiers, dimana pada parameter constructor bisa diberikan public, private, protected, readonly, dll
+3. static peroperty apply to the class, not any spesific instance that declare from class
+
+============================================= part 7 ======================================
+Index signature
+1. berguna untuk declare obj yang kita tidak tahu nama dari propertinya apa, tapi kita tahu bahwa type dan isi typenya apa. Cara buatnya "interface {nama}{[index: string]: number}"
+2. Readonly seperti namamnya hanya untuk dibaca bukan di write ulang
+3. masalah dari ini, jika kita ingin mengambil properti dengan nama yg gk ada TS tidak akan error melainkan return undefined
+
+
+============================================= part 8 ======================================
+TS Generics
+1. generic memberikan kita untuk placeholder terhadap suatu type yang ingin dimasukan, tetapi kita belum tahu.
+2. '!!' double bang operator, mengubah nilai bukan boolean menjadi bolean. Misal `!!"dave"` maka hasilnya "true" 
+
+
+============================================= part 9 ======================================
+Utility Types
+1. Partial
+2 Requiered
+3. Readonly
+4. Record
+5. Pick and Omit
+6. exclue and extract
+7. NonNullable
+8. ReturnType
+9. Parameters
+10 Awaited
